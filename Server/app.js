@@ -10,7 +10,7 @@ const contactUsRoute = require("./routes/Contact");
 
 const dataBase=require("./config/database");
 const cookiePerser=require("cookie-parser");
-// const cors=require("cors");
+const cors=require("cors");
 const {cloudinaryConnect}=require("./config/cloudinary");
 const fileUpload=require("express-fileupload");
 const dotenv=require("dotenv");

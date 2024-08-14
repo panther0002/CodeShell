@@ -58,10 +58,10 @@ const ExploreMore = () => {
                 }
             </div>
             
-            <div className='h-[150px]'></div>
+            <div className='lg:h-[150px] lg:mt-14'></div>
 
             {/* card  */}
-            <div className='absolute -bottom-[7%] flex flex-row w-11/12 gap-8 justify-center'>
+            <div className='lg:absolute -bottom-[7%] flex lg:flex-row  flex-col w-11/12 lg:gap-8 gap-14 justify-center'>
                 {
                     courses.map( (ele,index) =>{
                         return (

@@ -4,14 +4,18 @@ import { BsChevronDown } from "react-icons/bs"
 import { useSelector } from "react-redux"
 import { Link, matchPath, useLocation } from "react-router-dom"
 
-import logo from "../../assets/Logo/Logo-Full-Light.png"
+import logo from "../../assets/Logo/codeshell.png"
 import { NavbarLinks } from "../../data/navbar-links"
 import { apiConnector } from "../../services/apiconnector"
 import { categories } from "../../services/apis"
 import { ACCOUNT_TYPE } from "../../utils/constants"
 import ProfileDropdown from "../core/Auth/ProfileDropDown"
+import { RxCross1 } from "react-icons/rx";
 
+
+ 
 function Navbar() {
+
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
   const { totalItems } = useSelector((state) => state.cart)
@@ -19,6 +23,7 @@ function Navbar() {
 
   const [subLinks, setSubLinks] = useState([])
   const [loading, setLoading] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     ;(async () => {
@@ -43,11 +48,9 @@ function Navbar() {
   }
 
   return (
-      <div
-        className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 ${
-          location.pathname !== "/" ? "bg-richblack-800" : ""
-        } transition-all duration-200`}
-      >
+      <div className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700
+       ${location.pathname !== "/" ? "bg-richblack-800" : ""} transition-all duration-200`}>
+
         <div className="flex w-11/12 max-w-maxContent items-center justify-between">
         
           {/* Logo */}
@@ -159,9 +162,68 @@ function Navbar() {
             {token !== null && <ProfileDropdown />}
 
           </div>
-          <button className="mr-4 md:hidden">
-            <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
-          </button>
+
+
+
+
+          {/* for mobile  */}
+          { !mobileMenuOpen &&
+            <button className="mr-4  md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
+
+            </button>
+
+          }
+          
+
+           {/* Mobile Menu */}
+          {mobileMenuOpen && (
+          <div className="fixed top-0 right-0 z-50   bg-richblack-600 rounded-md  text-richblack-25 md:hidden">
+            
+            <div className="fixed top-0 right-0 mr-8 mt-4 text-2xl " onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                <RxCross1 />
+            </div>
+            
+            <div className="flex flex-col  my-8">
+              
+              {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
+                <Link 
+                  to="/dashboard/cart"
+                  className="flex items-center mx-4 mt-4"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <AiOutlineShoppingCart className="mr-2 text-xl text-richblack-100" />
+                  Cart ({totalItems})
+                </Link>
+              )}
+
+              {token === null && (
+                <div className="flex flex-col gap-4 mt-4 mx-4">
+                  <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                    <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
+                    Log in
+                    </button>
+                  </Link>
+
+                  <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+                    <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
+                    Sign up
+                    </button>
+                  </Link>
+                </div>
+              )}
+
+              {token !== null && (
+                <div className="mx-4 mt-4 ">
+                  <ProfileDropdown />
+                </div>
+              )}
+
+            </div>
+          </div>
+          )}
+
+          
         </div>
       </div>
   )

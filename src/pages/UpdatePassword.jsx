@@ -48,6 +48,7 @@ function UpdatePassword() {
           <p className="my-4 text-[1.125rem] leading-[1.625rem] text-richblack-100">
             Almost done. Enter your new password and youre all set.
           </p>
+          
           <form onSubmit={handleOnSubmit}>
           
             <label className="relative">

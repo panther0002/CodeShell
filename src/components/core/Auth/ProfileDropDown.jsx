@@ -3,6 +3,7 @@ import { AiOutlineCaretDown } from "react-icons/ai"
 import { VscDashboard, VscSignOut } from "react-icons/vsc"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 // import useOnClickOutside from "../../../hooks/useOnClickOutside"
 import { logout } from "../../../services/operations/authApi"
@@ -12,17 +13,41 @@ export default function ProfileDropdown() {
   const { user } = useSelector((state) => state.profile)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
 
-  // useOnClickOutside(ref, () => setOpen(false))
+  useEffect(() => {
+    
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener('click', handleClickOutside, true);
+    } else {
+      document.removeEventListener('click', handleClickOutside, true);
+    }
+    //In React, when you use useEffect, you can optionally return a cleanup function. 
+    //This cleanup function runs before the effect runs again or when the component unmounts. 
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+    
+  }, [open]);
+
+ 
+
+  
 
   if (!user) return null
 
   return (
-    <button className="relative" onClick={() => setOpen(!open)}>
+    <button className="relative"  onClick={() => setOpen(!open)}>
 
-      <div className="flex items-center gap-x-1">
+      <div className="flex items-center gap-x-1" >
         <img
           src={user?.image}
           alt={`profile-${user?.firstName}`}
@@ -58,6 +83,8 @@ export default function ProfileDropdown() {
         </div>
 
       )}
+     
+
     </button>
   )
 }

@@ -7,6 +7,7 @@ import { contactusEndpoint } from "../../services/apis"
 
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false)
+  
   const {
     register,
     handleSubmit,
@@ -44,10 +45,8 @@ const ContactUsForm = () => {
   }, [reset, isSubmitSuccessful])
 
   return (
-    <form
-      className="flex flex-col gap-7"
-      onSubmit={handleSubmit(submitContactForm)}
-    >
+    <form className="flex flex-col gap-7" onSubmit={handleSubmit(submitContactForm)}>
+
       <div className="flex flex-col gap-5 lg:flex-row">
 
         <div className="flex flex-col gap-2 lg:w-[48%]">

@@ -13,6 +13,7 @@ const Sidebar = () => {
 
     const {loading:profileLoading,user}=useSelector( (state)=>state.profile)
     const {loading:authLoading}=useSelector( (state)=>state.auth)
+    
     const dispatch=useDispatch();
     const navigate=useNavigate();
 
@@ -50,6 +51,8 @@ const Sidebar = () => {
                         link={{ name: "Settings", path: "/dashboard/settings" }}
                         iconName="VscSettingsGear"
                     />
+
+
                     {/* Logout */}
                     <button
                         onClick={() =>
@@ -62,7 +65,7 @@ const Sidebar = () => {
                             btn2Handler: () => setConfirmationModal(null),
                         })
                         }
-                        className="px-8 py-2 text-sm font-medium text-richblack-300"
+                        className="px-8 py-2 text-sm font-medium text-white"
                     >
                         <div className="flex items-center gap-x-2">
                             <VscSignOut className="text-lg" />

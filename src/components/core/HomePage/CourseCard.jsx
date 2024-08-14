@@ -6,7 +6,7 @@ const CourseCard = ({cardData,currentCard,setCurrentCard}) => {
     <div className={` ${ cardData.heading ===currentCard 
         ?"bg-richblack-5 text-richblack-800 box_shadow" 
         :"bg-richblack-700 text-richblack-5" } 
-        w-[30%] transition-all duration-200 rounded-sm`}
+        lg:w-[30%] w-[80%] mx-auto transition-all duration-200 rounded-sm`}
         onClick={() =>setCurrentCard(cardData.heading)}
         
         >

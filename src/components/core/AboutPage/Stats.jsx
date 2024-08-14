@@ -1,4 +1,7 @@
 import React from "react";
+import { motion } from "framer-motion"
+import { fadeIn } from "../../common/motionFrameVarients"
+
 
 const Stats = [
   { count: "5K", label: "Active Students" },
@@ -13,7 +16,11 @@ const StatsComponenet = () => {
 
     <div className="bg-richblack-700">
       {/* Stats */}
-      <div className="flex flex-col gap-10 justify-between w-11/12 max-w-maxContent text-white mx-auto ">
+      <motion.div 
+      variants={fadeIn("up",0.2)}
+      initial="hidden"
+      whileInView={"show"}
+      className="flex flex-col gap-10 justify-between w-11/12 max-w-maxContent text-white mx-auto ">
         <div className="grid grid-cols-2 md:grid-cols-4 text-center">
           {Stats.map((data, index) => {
             return (
@@ -28,7 +35,7 @@ const StatsComponenet = () => {
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

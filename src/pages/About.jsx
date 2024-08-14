@@ -13,6 +13,8 @@ import StatsComponenet from "../components/core/AboutPage/Stats"
 import HighlightText from "../components/core/HomePage/HighlightText"
 import Footer from "../components/common/Footer"
 import ReviewSlider from "../components/common/ReviewSlider"
+import { motion } from 'framer-motion'
+import { fadeIn,bounce ,scaleUp} from './../components/common/motionFrameVarients';
 
 const About = () => {
   return (
@@ -22,7 +24,13 @@ const About = () => {
 
             <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center text-white">
 
-                <header className="mx-auto py-20 text-4xl font-semibold lg:w-[70%]">
+                <motion.div 
+                  variants={fadeIn('down', 0.1)}
+                  initial='hidden'
+                  whileInView={'show'}
+                  viewport={{ once: false, amount: 0.1 }}
+                className="mx-auto py-20 text-4xl font-semibold lg:w-[70%]"
+                >
                     Driving Innovation in Online Education for a
                     <HighlightText text={"Brighter Future"} />
                     <p className="mx-auto mt-3 text-center text-base font-medium text-richblack-300 lg:w-[95%]">
@@ -31,7 +39,7 @@ const About = () => {
                     offering cutting-edge courses, leveraging emerging technologies,
                     and nurturing a vibrant learning community.
                     </p>
-                </header>
+                </motion.div>
 
                 <div className="sm:h-[70px] lg:h-[150px]"></div>
                 <div className="absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5">
@@ -45,16 +53,25 @@ const About = () => {
         </section>
 
          {/*Section 2 */}
-      <section className="border-b border-richblack-700">
+      <motion.div
+        variants={fadeIn('down', 0.1)}
+        initial='hidden'
+        whileInView={'show'}
+        viewport={{ once: false, amount: 0.1 }}
+       className="border-b border-richblack-700">
         <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
           <div className="h-[100px] "></div>
           <Quote />
         </div>
-      </section>
+      </motion.div>
 
         {/*Section 3 */}
         <section>
-            <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
+            <motion.div
+              variants={fadeIn("up",0.2)}
+              initial="hidden"
+              whileInView={"show"}
+             className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
 
                 <div className="flex flex-col items-center gap-10 lg:flex-row justify-between">
 
@@ -113,15 +130,21 @@ const About = () => {
                     </div>
                 </div>
 
-            </div>
+            </motion.div>
       </section>
 
         {/* section 4 */}
       <StatsComponenet />
-      <section className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-white mb-8">
+      
+      <motion.div
+        variants={fadeIn("up",0.2)}
+        initial="hidden"
+        whileInView={"show"}
+       className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-white mb-8">
         <LearningGrid />
         <ContactFormSection />
-      </section>
+      </motion.div>
+
         {/* review */}
       <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
         {/* Reviws from Other Learner */}

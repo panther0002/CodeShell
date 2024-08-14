@@ -22,6 +22,7 @@ export function updateDisplayPicture(token, formData) {
             //call backed
             const response = await apiConnector("PUT",UPDATE_DISPLAY_PICTURE_API,formData,
               {"Content-Type": "multipart/form-data",Authorization: `Bearer ${token}`})
+              
             console.log(
                 "UPDATE_DISPLAY_PICTURE_API API RESPONSE............",
                 response

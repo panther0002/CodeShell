@@ -18,7 +18,7 @@ exports.resetPasswordToken=async (req,res)=>{
             })
         }
         //3 :generate token
-        const token=crypto.randomBytes(20).toString("hex"); //#######
+        const token=crypto.randomBytes(20).toString("hex"); //####### generate 20 bytes , convert it into hexadecimal in 1 byte contain 2 hexadecimal number .. thus 40 character )
 
         //4 :update user by adding token and expiring time
          const updatedDetails=await User.findOneAndUpdate({email:email},

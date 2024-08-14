@@ -12,7 +12,7 @@ const mailSender=async (email,title,body)=>{
         });
 
         let info= await transporter.sendMail({
-            from:'Study Notion || CODEHELP -by LOVE BABBAR',
+            from:'CODESHELL -by ARJUN PARAMANIK',
             to:`${email}`,
             subject:`${title}`,
             html:`${body}`

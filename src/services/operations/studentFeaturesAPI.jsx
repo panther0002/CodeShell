@@ -1,7 +1,7 @@
 import { toast } from "react-hot-toast";
 import { studentEndpoints } from "../apis";
 import { apiConnector } from "../apiconnector";
-import rzpLogo from "../../assets/Logo/rzp_logo.png"
+import rzpLogo from "../../assets/Logo/codeshell.png"
 import { setPaymentLoading } from "../../slices/courseSlice";
 import { resetCart } from "../../slices/cartSlice";
 
@@ -9,6 +9,7 @@ import { resetCart } from "../../slices/cartSlice";
 const {COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API} = studentEndpoints;
 
 function loadScript(src) {
+
   return new Promise((resolve) => {
     const script = document.createElement("script")
     script.src = src
@@ -44,6 +45,7 @@ function loadScript(src) {
   
       // Initiating the Order in Backend
       console.log("order create korte elam")
+
       const orderResponse = await apiConnector("POST",COURSE_PAYMENT_API,
         {
           courses,
@@ -64,7 +66,7 @@ function loadScript(src) {
         currency: orderResponse.data.data.currency,
         amount: `${orderResponse.data.data.amount}`,
         order_id: orderResponse.data.data.id,
-        name: "StudyNotion",
+        name: "CodeShell",
         description: "Thank you for Purchasing the Course.",
         image: rzpLogo,
         prefill: {
@@ -76,6 +78,7 @@ function loadScript(src) {
           verifyPayment({ ...response, courses }, token, navigate, dispatch)
         },
       }
+      
       const paymentObject = new window.Razorpay(options)
   
       paymentObject.open()

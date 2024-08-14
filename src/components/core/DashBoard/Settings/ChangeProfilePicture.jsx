@@ -39,11 +39,11 @@ export default function ChangeProfilePicture() {
 
   //converting it to a data URL using the FileReader API.
   const previewFile = (file) => { 
-
+    
     const reader = new FileReader()
     reader.readAsDataURL(file)  //converts it to a base64 encoded string (data URL)
     reader.onloadend = () => {   //triggered when the read operation is complete
-      setPreviewSource(reader.result)  
+      setPreviewSource(reader.result) 
     }
 
   }
@@ -86,21 +86,21 @@ export default function ChangeProfilePicture() {
                     <p>Change Profile Picture</p>
                     <div className="flex flex-row gap-3">
 
-                        <input type="file"ref={fileInputRef} onChange={handleFileChange} className="hidden"
+                        <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden"
                             accept="image/png, image/gif, image/jpeg"
                         />
 
                         <button onClick={handleClick} disabled={loading} className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50">
-                            Select
+                          Select
                         </button>
 
                         <IconBtn
                             text={loading ? "Uploading..." : "Upload"}
                             onclick={handleFileUpload}
                         >
-                            {!loading && (
-                            <FiUpload className="text-lg text-richblack-900" />
-                            )}
+                          {!loading && (
+                          <FiUpload className="text-lg text-richblack-900" />
+                          )}
 
                         </IconBtn>
 

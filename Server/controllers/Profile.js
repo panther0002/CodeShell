@@ -22,6 +22,7 @@ exports.updateProfile=async (req,res)=>{
 
         //get userId
         const id=req.user.id;  // auth e dhukano a6e already
+        
         console.log("ekhane a6i")
         //validation
         // if(!id || !contactNo || !gender){
@@ -138,8 +139,7 @@ exports.updateDisplayPicture=async (req,res)=>{
 
 
         //upload image to cloudinary
-        const image=await uploadImageToCloudinary(displayPicture,process.env.FOLDER_NAME,1000,
-            1000);
+        const image=await uploadImageToCloudinary(displayPicture,process.env.FOLDER_NAME,1000,1000);
 
         console.log("Uploading image to cloudinary ",image);
 

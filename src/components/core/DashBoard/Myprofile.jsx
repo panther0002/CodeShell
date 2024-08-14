@@ -6,6 +6,7 @@ import { formattedDate } from "../../../utils/dateFormatter"
 import IconBtn from "../../common/IconBTN"
 
 export default function MyProfile() {
+  
   const { user } = useSelector((state) => state.profile)
   const navigate = useNavigate()
 
